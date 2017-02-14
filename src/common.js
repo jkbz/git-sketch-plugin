@@ -105,12 +105,16 @@ export function createInput (context, msg, okLabel, cancelLabel) {
 
 export function createInputWithCheckbox (context, msg, checkboxMsg, checked, okLabel, cancelLabel) {
   var accessory = NSView.alloc().initWithFrame(NSMakeRect(0, 0, 300, 100))
+
+  // Configure commit message input
   var input = TextArea(0, 25, 300, 75)
-  var checkbox = NSButton.alloc().initWithFrame(NSMakeRect(0, 0, 300, 25))
+  accessory.addSubview(input.view)
+
+  // Configure Pretty Diffs checkbox
+  var checkbox = NSButton.alloc().initWithFrame(NSMakeRect(0, 0, 300, 25))  
   checkbox.setButtonType(3)
   checkbox.title = checkboxMsg
   checkbox.state = checked ? 1 : 0
-  accessory.addSubview(input.view)
   accessory.addSubview(checkbox)
 
   var alert = NSAlert.alloc().init()
