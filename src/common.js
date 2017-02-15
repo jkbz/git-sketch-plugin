@@ -103,7 +103,7 @@ export function createInput (context, msg, okLabel, cancelLabel) {
   }
 }
 
-export function createInputWithCheckbox (context, msg, checkboxMsg, checked, okLabel, cancelLabel) {
+export function createInputWithCheckbox (context, msg, okLabel, cancelLabel) {
   var accessory = NSView.alloc().initWithFrame(NSMakeRect(0, 0, 300, 100))
 
   // Configure commit message input
@@ -111,11 +111,18 @@ export function createInputWithCheckbox (context, msg, checkboxMsg, checked, okL
   accessory.addSubview(input.view)
 
   // Configure Pretty Diffs checkbox
-  var checkbox = NSButton.alloc().initWithFrame(NSMakeRect(0, 0, 300, 25))  
-  checkbox.setButtonType(3)
-  checkbox.title = checkboxMsg
-  checkbox.state = checked ? 1 : 0
-  accessory.addSubview(checkbox)
+  var checkboxDiffs = NSButton.alloc().initWithFrame(NSMakeRect(0, 0, 300, 25))  
+  checkboxDiffs.setButtonType(3)
+  checkboxDiffs.title = 'Generate files for pretty diffs'
+  checkboxDiffs.state = getUserPreferences().diffByDefault ? 1 : 0
+  accessory.addSubview(checkboxDiffs)
+
+  // Configure Pretty Diffs checkbox
+  var checkboxPush = NSButton.alloc().initWithFrame(NSMakeRect(0, 0, 300, 25))  
+  checkboxPush.setButtonType(3)
+  checkboxPush.title = 'Push automatically'
+  checkboxPush.state = getUserPreferences().pushByDefault ? 1 : 0
+  accessory.addSubview(checkboxPush)
 
   var alert = NSAlert.alloc().init()
   alert.setMessageText(msg)
@@ -130,7 +137,8 @@ export function createInputWithCheckbox (context, msg, checkboxMsg, checked, okL
   return {
     responseCode: responseCode,
     message: message,
-    checked: checkbox.state() == 1
+    generateDiffs: checkboxDiffs.state() == 1
+    push: checkboxPush.state() == 1
   }
 }
 
