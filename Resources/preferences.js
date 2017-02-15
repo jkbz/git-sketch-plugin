@@ -45,6 +45,10 @@ class Preferences extends Component {
           <label htmlFor="diffByDefault"> Generate pretty diff by default</label>
         </div>
         <div className="form">
+          <input type="checkbox" checked={preferences.pushByDefault} id="pushByDefault" onChange={this.linkState('preferences.pushByDefault')} />
+          <label htmlFor="pushByDefault"> Push commits automatically</label>
+        </div>
+        <div className="form">
           <input type="checkbox" checked={preferences.includeOverviewFile} id="includeOverviewFile" onChange={this.linkState('preferences.includeOverviewFile')} />
           <label htmlFor="includeOverviewFile"> Save an overview file with rendered artboards</label>
         </div>

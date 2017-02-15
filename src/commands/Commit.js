@@ -2,7 +2,7 @@
 import { sendEvent } from '../analytics'
 import { getCurrentBranch, checkForFile, executeSafely, exec, createInputWithCheckbox, exportArtboards } from '../common'
 import { getUserPreferences } from '../preferences'
-import push from 'push'
+// import push from '/Push'
 
 export default function (context) {
   if (!checkForFile(context)) { return }

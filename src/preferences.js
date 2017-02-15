@@ -8,6 +8,7 @@ export function getUserPreferences () {
     exportScale: '1.0',
     terminal: 'Terminal',
     diffByDefault: true,
+    pushByDefault: false,
     includeOverviewFile: true,
     sendAnalytics: true
   })
